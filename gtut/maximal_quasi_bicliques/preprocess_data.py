@@ -62,7 +62,7 @@ def read_graph_edges(file):
 
 def main():
     start_time = time.time()
-    read_graph_edges("/Users/sivacharan/PycharmProjects/FakeNews/user_article_raw.bigraph")
+    read_graph_edges("../user_article_raw.bigraph")
     print("Task finished in %s seconds: " % (time.time() - start_time))
 
 

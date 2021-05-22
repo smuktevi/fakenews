@@ -134,7 +134,7 @@ def compute_articlepair_similarities():
 def main():
     start_time = time.time()
 
-    dir_name = "/Users/gsc/PycharmProjects/FakeNews/m_n_biclique/"
+    dir_name = "../m_n_biclique/"
     article_scores_file = dir_name + "4_5_article_scores.json"
     biclique_file = dir_name + "4_5_biclique.json"
 

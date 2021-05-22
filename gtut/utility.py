@@ -25,17 +25,17 @@ fakearticles = []
 def load_data_structures():
     global aliasval_userid, userarticle_tweet, userarticle_multtweets, tweet_content, realarticles, fakearticles
 
-    with open('/Users/sivacharan/PycharmProjects/FakeNews/aliasval_userid.json', 'r') as alias_user_json:
+    with open('aliasval_userid.json', 'r') as alias_user_json:
         aliasval_userid = json.load(alias_user_json)
-    with open('/Users/sivacharan/PycharmProjects/FakeNews/user_firsttweet_article.json', 'r') as edges_json:
+    with open('user_firsttweet_article.json', 'r') as edges_json:
         userarticle_tweet = json.load(edges_json)
-    with open('/Users/sivacharan/PycharmProjects/FakeNews/userarticle_tweets.json', 'r') as all_edges_json:
+    with open('userarticle_tweets.json', 'r') as all_edges_json:
         userarticle_multtweets = json.load(all_edges_json)
-    with open('/Users/sivacharan/PycharmProjects/FakeNews/tweet_content.json', 'r') as tweet_content_json:
+    with open('tweet_content.json', 'r') as tweet_content_json:
         tweet_content = json.load(tweet_content_json)
-    with open('/Users/sivacharan/PycharmProjects/FakeNews/real_article_tweetids.json') as real_articles:
+    with open('real_article_tweetids.json') as real_articles:
         realarticles = json.load(real_articles).keys()
-    with open('/Users/sivacharan/PycharmProjects/FakeNews/fake_article_tweetids.json') as fake_articles:
+    with open('fake_article_tweetids.json') as fake_articles:
         fakearticles = json.load(fake_articles).keys()
     return aliasval_userid, userarticle_tweet, userarticle_multtweets, tweet_content, realarticles, fakearticles
 

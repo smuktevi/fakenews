@@ -67,7 +67,7 @@ def generate_m_n_bicliques(m, n, fakearticles):
                     ""
 
             # write this data structure to a file
-    filename = "/Users/sivacharan/PycharmProjects/FakeNews/m_n_biclique/" + str(m) + "_" + str(n) + "_biclique.json"
+    filename = "m_n_biclique/" + str(m) + "_" + str(n) + "_biclique.json"
     os.makedirs(os.path.dirname(filename), exist_ok=True)
     with open(filename, 'w') as fp:
         json.dump(m_artclenodes_n_usrnodes, fp)
@@ -85,15 +85,22 @@ def generate_m_n_bicliques(m, n, fakearticles):
 
 def main():
     start_time = time.time()
-    generate_biclique_file("/Users/sivacharan/Desktop/biclique-master/user_article.biclique")
+    # generate_biclique_file("/Users/sivacharan/Desktop/biclique-master/user_article.biclique")
     realarticles, fakearticles = fetch_real_fake_articleids()
+
+    for m in range(100):
+        for n in range(100):
+            generate_m_n_bicliques(m, n, fakearticles)
+
     # generate_m_n_bicliques(1, 1, fakearticles)
     # generate_m_n_bicliques(2, 5, fakearticles)
     # generate_m_n_bicliques(3, 4, fakearticles)
     # generate_m_n_bicliques(3, 5, fakearticles)
     # generate_m_n_bicliques(4, 5, fakearticles)
-    generate_m_n_bicliques(5, 5, fakearticles)
-    generate_m_n_bicliques(6, 5, fakearticles)
+
+    # generate_m_n_bicliques(5, 5, fakearticles)
+    # generate_m_n_bicliques(6, 5, fakearticles)
+
     # generate_m_n_bicliques(2, 10, fakearticles)
     # generate_m_n_bicliques(3, 10, fakearticles)
     # generate_m_n_bicliques(4, 10, fakearticles)

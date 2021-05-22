@@ -73,7 +73,7 @@ def main():
     for i in range(3, 14):
         for j in range(3, 14):
             # read_graph_edges('examplegraph_edges.bigraph')
-            read_graph_edges("/Users/gsc/PycharmProjects/FakeNews/user_article_raw.bigraph")
+            read_graph_edges("../user_article_raw.bigraph")
             compute_alpha_beta_core(i, j, node_shellval)
             articles.clear()
             users.clear()
