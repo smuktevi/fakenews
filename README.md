@@ -26,7 +26,7 @@ The modifications include:
  If you want to modify the data, that is being saved from each downloaded, just modify the corresponding `extract_tweet_features`
  or `extract_retweet_features` methods. Be carefull though, that they save the same information, as they go into the same file.
 
-## FakeNewsNet(https://github.com/KaiDMML/FakeNewsNet)
+## [FakeNewsNet](https://github.com/KaiDMML/FakeNewsNet)
 
 ***We released a tool [FakeNewsTracker], for collecting, analyzing, and visualizing of fake news and the related dissemination on social media. Check it out!***
 
