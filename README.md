@@ -1,6 +1,32 @@
 
+## OurFakeNewsNet
 
-## FakeNewsNet
+We used a remodified version of the original FakeNewsNet repository both of which are mentioned and credited below. We also added our own code for processing certain folder structures and fixing some minor bugs. We ran this with different configurations on a GCP VM. We used two datasets, one that was originally provided by FakeNewsNet and another smaller dataset that was sampled from the original. 
+
+## FakeNewsNetModified[https://github.com/SaschaStenger/FakeNewsNet_modified] by SaschaStenger
+
+This is my modified version of the FakeNewsNet downloader. The dataset is originaly theirs, so all the credit belongs to them.
+I only changed the download code for tweets and retweets, as those took the longest amount of time.
+
+The tweet download was changed to use the `twarc` library and only uses a single key, while the logic behind the retweet 
+is still the same. But this leads to much better downlaod times. In the end, when only loading the tweets, it should take around half a day.
+
+The modifications include:
+ 
+ - The tweet and retweet data is no longer stored as `.json`, but as `.csv`
+ - Tweets are no longer in single files, but all each news item will receive just one tweet file. 
+ - Currently retweet files include both tweets and retweets. This could be changed, but for my workflow it's more convenient.
+ - The code checks, which files have already been downloaded, so it can be stopped and resumed at will
+ - the retweet download needs the tweet download to be finished first as it checks the availability of retweets based on
+ these tweet csv files.
+ - fake or none fake are now indicated by an extra column in the data file. It's a boolean value that's True(1) if it's a fake and False(0) if it's true
+ 
+ 
+ 
+ If you want to modify the data, that is being saved from each downloaded, just modify the corresponding `extract_tweet_features`
+ or `extract_retweet_features` methods. Be carefull though, that they save the same information, as they go into the same file.
+
+## FakeNewsNet[https://github.com/KaiDMML/FakeNewsNet]
 
 ***We released a tool [FakeNewsTracker], for collecting, analyzing, and visualizing of fake news and the related dissemination on social media. Check it out!***
 
