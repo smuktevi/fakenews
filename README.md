@@ -1,9 +1,9 @@
 
-## OurFakeNewsNet
+# OurFakeNewsNet
 
 We used a remodified version of the original FakeNewsNet repository both of which are mentioned and credited below. We also added our own code for processing certain folder structures and fixing some minor bugs. We ran this with different configurations on a GCP VM. We used two datasets, one that was originally provided by FakeNewsNet and another smaller dataset that was sampled from the original. 
 
-## [FakeNewsNetModified][https://github.com/SaschaStenger/FakeNewsNet_modified] by SaschaStenger
+## [FakeNewsNetModified](https://github.com/SaschaStenger/FakeNewsNet_modified) by SaschaStenger
 
 This is my modified version of the FakeNewsNet downloader. The dataset is originaly theirs, so all the credit belongs to them.
 I only changed the download code for tweets and retweets, as those took the longest amount of time.
@@ -26,7 +26,7 @@ The modifications include:
  If you want to modify the data, that is being saved from each downloaded, just modify the corresponding `extract_tweet_features`
  or `extract_retweet_features` methods. Be carefull though, that they save the same information, as they go into the same file.
 
-## FakeNewsNet[https://github.com/KaiDMML/FakeNewsNet]
+## FakeNewsNet(https://github.com/KaiDMML/FakeNewsNet)
 
 ***We released a tool [FakeNewsTracker], for collecting, analyzing, and visualizing of fake news and the related dissemination on social media. Check it out!***
 
