@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "main.py", line 69, in <module>
+    download_dataset()
+  File "main.py", line 65, in download_dataset
+    data_collector.collect_data(data_choices)
+AttributeError: 'NoneType' object has no attribute 'collect_data'

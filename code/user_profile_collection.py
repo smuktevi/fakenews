@@ -15,17 +15,16 @@ from util.Constants import GET_FOLLOWERS_ID
 
 def get_user_ids_in_folder(samples_folder):
     user_ids = set()
-
+    samples_folder = samples_folder[:-4]
     for news_id in os.listdir(samples_folder):
-        news_dir = "{}/{}".format(samples_folder, news_id)
-        tweets_dir = "{}/{}/tweets".format(samples_folder, news_id)
-        if is_folder_exists(news_dir) and is_folder_exists(tweets_dir):
-
-            for tweet_file in os.listdir(tweets_dir):
-                tweet_object = json.load(open("{}/{}".format(tweets_dir, tweet_file)))
-
-                user_ids.add(tweet_object["user"]["id"])
-
+        if news_id == "tweets":
+            tweets_dir = "{}{}".format(samples_folder, news_id)
+            if is_folder_exists(tweets_dir):
+                for tweet_file in os.listdir(tweets_dir):
+                    if tweet_file[-4:] == "json":
+                        tweet_object = json.load(open("{}/{}".format(tweets_dir, tweet_file)))
+                        for tweet in tweet_object:
+                            user_ids.add(tweet["user_id"])
     return user_ids
 
 
