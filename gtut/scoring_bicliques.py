@@ -1,7 +1,7 @@
 import time
 import json
 import matplotlib.pyplot as plt
-from utility import get_greedy_timestamp_delta, get_article_level_text_similarity, \
+from .utility import get_greedy_timestamp_delta, get_article_level_text_similarity, \
     find_text_similarities_avg, data_bucketing, load_data_structures, find_timestamp_deltas_avg, \
     find_fake_real_articles_count, compute_biclique_score, biclique_temporal_coherence_val
 
@@ -117,6 +117,5 @@ def main():
     score_bicliques(5, 5, "m_n_biclique/5_5_biclique.json")
     score_bicliques(6, 5, "m_n_biclique/6_5_biclique.json")
     print("Task finished in %s seconds: " % (time.time() - start_time))
-
 
 main()
