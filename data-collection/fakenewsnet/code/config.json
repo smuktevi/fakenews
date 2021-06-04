@@ -1,0 +1,27 @@
+{
+  "dump_location": "full_datadump1/full_dump1_dataset",
+  "dataset_dir": "../dataset",
+  "tweet_keys_file": "resources/tweet_keys_file.json",
+  "num_process": 2,
+  "num_twitter_keys": 2,
+  "data_collection_choice": [
+    {
+      "news_source": "politifact",
+      "label": "fake"
+    },
+    {
+      "news_source": "politifact",
+      "label": "real"
+    },
+    {
+      "news_source": "gossipcop",
+      "label": "fake"
+    },
+    {
+      "news_source": "gossipcop",
+      "label": "real"
+    }
+  ],
+
+  "data_features_to_collect" : ["user_profiles"]
+}
