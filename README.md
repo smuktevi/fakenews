@@ -3,7 +3,7 @@
 
 We used a remodified version of the original FakeNewsNet repository both of which are mentioned and credited below. We also added our own code for processing certain folder structures and fixing some minor bugs. We ran this with different configurations on a GCP VM. We used two datasets, one that was originally provided by FakeNewsNet and another smaller dataset that was sampled from the original. 
 
-## FakeNewsNetModified[https://github.com/SaschaStenger/FakeNewsNet_modified] by SaschaStenger
+## [FakeNewsNetModified][https://github.com/SaschaStenger/FakeNewsNet_modified] by SaschaStenger
 
 This is my modified version of the FakeNewsNet downloader. The dataset is originaly theirs, so all the credit belongs to them.
 I only changed the download code for tweets and retweets, as those took the longest amount of time.
