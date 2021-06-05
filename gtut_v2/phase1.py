@@ -8,11 +8,9 @@ import json
 import time
 import gensim
 import tqdm
-import scipy
+import copy
 from constants import LAMBDA
 
-
-# nltk.download('stopwords')
 
 def BAS(timestamps):
     N = len(timestamps)
@@ -187,6 +185,7 @@ def article_tt_scores(file):
 
 
 def label(article_tt_scores):
+    # phase1_labels = copy.deepcopy(phase0_labels)
     articles = np.array(list(article_tt_scores.keys()))
     tt_scores = np.array(list(article_tt_scores.values()))
 
@@ -196,21 +195,29 @@ def label(article_tt_scores):
     ranked_tt_ix = np.argsort(tt_scores)
     ranked_articles = articles[ranked_tt_ix]
 
-    labels = {}
+    phase1_labels = {}
 
     for i, article in enumerate(ranked_articles):
         if i <= tau:
-            labels[article] = 0
+            phase1_labels[article] = 0
         elif i >= N-tau:
-            labels[article] = 1
+            phase1_labels[article] = 1
         else:
-            labels[article] = -1
-    return labels
+            phase1_labels[article] = -1
+    return phase1_labels
 
 
 if __name__ == "__main__":
-    start_time = time.time()
 
+    # labels before beginning of alg, to keep track of articles to be labelled.
+    # phase0_labels = {}
+    # with open('metadata/user_article_raw.bigraph', 'r') as fp:
+    #     lines = fp.readlines()
+    #     for line in lines:
+    #         article, user = line.split()
+    #         phase0_labels[article] = -2
+
+    start_time = time.time()
     biclique_file = 'biclique/politifact_maximal_quasi_bicliques.json'
     print('Calculating TTScore for every article in A...')
     article_tt = article_tt_scores(biclique_file)

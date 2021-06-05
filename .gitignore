@@ -1,2 +1,5 @@
 small_dataset
+full_datadump1
 .idea
+.DS_Store
+__pycache__

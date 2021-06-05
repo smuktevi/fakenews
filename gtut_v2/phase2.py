@@ -1,7 +1,6 @@
 import json
 import numpy as np
 import pathlib
-import json
 from gensim.models.doc2vec import Doc2Vec, TaggedDocument
 from nltk.tokenize import word_tokenize
 import copy
@@ -13,7 +12,6 @@ from constants import GOSSIPCOP_ALPHA, GOSSIPCOP_BETA, POLITIFACT_ALPHA, POLITIF
 def map_article_to_biclique(biclique_file):
     article_to_biclique = {}
 
-
     with open(biclique_file, 'r') as f:
         bicliques = json.load(f)
 
@@ -23,6 +21,7 @@ def map_article_to_biclique(biclique_file):
             if article not in article_to_biclique:
                 article_to_biclique[article] = set()
             article_to_biclique[article].add(BA)
+
     return article_to_biclique
 
 
@@ -52,8 +51,8 @@ def jaccard_bicliques(A1, A2):
 
 
 def jaccard_users(A1, A2):
-    users1 = article_users_map[A1]
-    users2 = article_users_map[A2]
+    users1 = article_users_biclique_map[A1]
+    users2 = article_users_biclique_map[A2]
 
     return len(users1.intersection(users2)) / len(users1.union(users2))
 
@@ -89,62 +88,52 @@ def get_text(article):
 
 def label(phase1_labels):
     phase2_labels = copy.deepcopy(phase1_labels)
-    real_articles = [a for a, l in phase1_labels.items() if l == 0]
-    fake_articles = [a for a, l in phase1_labels.items() if l == 1]
-    labelled = real_articles + fake_articles
-    unlabelled = [a for a, l in phase1_labels.items() if l == -1]
-
-    # text_map = {article : get_text(article) for article in phase1_labels.keys()}
-    # all_articles = list(text_map.keys())
-    # all_text = [text_map[article] for article in all_articles]
-    #
-    # labeled_text = [text_map[article] for article in labelled] #real_text.extend(fake_text)
-    #
-    # vect = TfidfVectorizer(min_df=1, stop_words="english")
-    # tfidf = vect.fit_transform(all_text)
-    #
-    # pairwise_similarity = tfidf * tfidf.T
-    # arr = pairwise_similarity.toarray()
-    # np.fill_diagonal(arr, np.nan)
-    #
-    # for article in unlabelled:
-    #     input_idx = all_text.index(article)
-    #     result_idx = np.nanargmax(arr[input_idx])
-    #
-    #     result_article = all_articles[result_idx]
-    #
-    #     phase1_labels[article] = phase1_labels[result_article]
+    # labelled = [a for a, l in phase1_labels.items() if l >= 0]
+    unlabelled = [a for a, l in phase1_labels.items() if l < 0]
 
     for a1 in unlabelled:
         max_sim = -np.inf
         max_article = None
-        for a2 in labelled:
-            w = get_weight(a1, a2)
-            if w > max_sim:
-                max_sim = w
-                max_article = a2
-        phase2_labels[a1] = phase1_labels[max_article]
+        biclique_set = article_biclique_map[a1]
 
+        for BA in biclique_set:
+            biclique_articles = BA.split(",")
+            for a2 in biclique_articles:
+                if a1 != a2 and phase1_labels[a2] >= 0:
+                    w = get_weight(a1, a2)
+                    # print(w)
+                    if w > max_sim:
+                        max_sim = w
+                        max_article = a2
+        print(a1, max_article)
+        phase2_labels[a1] = phase1_labels[max_article]
     return phase2_labels
 
 
 
 if __name__ == "__main__":
-    with open("phase1_labels.json", 'r') as f:
+    with open("metadata/phase1_labels.json", 'r') as f:
         phase1_labels = json.load(f)
-
+    # print(len(phase1_labels))
     # bigraph_file = 'metadata/user_article_raw.bigraph'
 
     biclique_file = 'biclique/politifact_maximal_quasi_bicliques.json'
 
     print("Generating mapping of article to it's bicliques...")
     article_biclique_map = map_article_to_biclique(biclique_file)
-    print("Generating mapping of article to it's users...")
-    article_users_map = map_article_to_users(biclique_file)
 
+    print("Generating mapping of article to it's users...")
+    article_users_biclique_map = map_article_to_users(biclique_file)
+
+    for article in phase1_labels.keys():
+        if article not in article_biclique_map:
+            article_biclique_map[article] = set()
+
+        if article not in article_users_biclique_map:
+            article_users_biclique_map[article] = set()
 
     phase2_labels = label(phase1_labels)
-
+    # print(len(phase2_labels))
     with open('metadata/phase2_labels.json', 'w') as f:
         json.dump(phase2_labels, f)
 
