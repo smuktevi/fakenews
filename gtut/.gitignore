@@ -4,3 +4,4 @@
 *.bigraph
 *.png
 *.csv
+.ipynb_checkpoints
