@@ -6,4 +6,4 @@ Fake news and disinformation has established itself as a looming presence on soc
   
 Several existing methods target fake news detection using supervised models but supervised learning can largely be very domain specific and labelling or finding labelled datasets of fake and real news articles is a tedious procedure. We thought it to be interesting to explore an unsupervised graph-based approach to fake news detection and study the important aspects that help characterize fakenews based on Social Media user behaviours and interactions with news articles. Social networks, such as Twitter, take a substantial presence in our lives, and contain data that can provide insight into how users spread information. The key assumption is that user interactions with news posted on Social Media contains underlying information about whether the news is fake or real.
 
-[Proejct Report](https://github.com/smuktevi/fakenews/blob/main/FakeNewsDetection.pdf)
+[Project Report](https://github.com/smuktevi/fakenews/blob/main/FakeNewsDetection.pdf)
