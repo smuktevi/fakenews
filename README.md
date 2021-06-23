@@ -1,3 +1,9 @@
-# cse547-project
+# Fake News Detection on Social Media
+
+Over the past decade, it has been made clear that the spread of disinformation can wreak havoc in society by drastically affecting the political climate, spreading misinformation about contagious viruses, or even sparking major fluctuations in stock markets. Fake news can easily propagate through a multitude of channels and instigate global frenzy within minutes. These are concerning times wherein social media dominates as the primary messenger of news and information across the internet for many people all over the world. 
+  
+Fake news and disinformation has established itself as a looming presence on social media platforms, and it is critical that we find a way to curb the spread of fake news. We propose to build a model to detect and classify fake news so that it can be dealt with before it reaches consumers on social networks, while generalizing well across different contexts and domains. We will study the various interactions of users on social media with posts on news articles. We scope our data to news content from the domains of Politics and Entertainment.  
+  
+Several existing methods target fake news detection using supervised models but supervised learning can largely be very domain specific and labelling or finding labelled datasets of fake and real news articles is a tedious procedure. We thought it to be interesting to explore an unsupervised graph-based approach to fake news detection and study the important aspects that help characterize fakenews based on Social Media user behaviours and interactions with news articles. Social networks, such as Twitter, take a substantial presence in our lives, and contain data that can provide insight into how users spread information. The key assumption is that user interactions with news posted on Social Media contains underlying information about whether the news is fake or real.
 
 [Proejct Report](https://github.com/smuktevi/fakenews/blob/main/FakeNewsDetection.pdf)
